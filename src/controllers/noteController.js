@@ -7,12 +7,12 @@ const addNote = async (req, res) => {
     const note = new Note({ title, desc, img, userId });
     await note.save();
     res.status(201).json({
-      status: true,
+      success: true,
       message: `${title} added`,
     });
   } catch (error) {
     res.status(400).json({
-      status: false,
+      success: false,
       message: error.message,
     });
   }
@@ -29,13 +29,13 @@ const getNote = async (req, res) => {
     }
     const note = await Note.find(query);
     res.status(200).json({
-      status: true,
+      success: true,
       message: `${note.length} Note founds`,
       result: note,
     });
   } catch (error) {
     res.status(500).json({
-      status: false,
+      success: false,
       message: error.message,
     });
   }
