@@ -20,8 +20,14 @@ const addNote = async (req, res) => {
 
 const getNote = async (req, res) => {
   try {
+    let option = req.query.option;
     const userId = req.userId;
-    const note = await Note.find({ userId });
+    const query = { userId };
+
+    if (option) {
+      query.option = option;
+    }
+    const note = await Note.find(query);
     res.status(200).json({
       status: true,
       message: `${note.length} Note founds`,

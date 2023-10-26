@@ -8,6 +8,11 @@ const NoteSchema = mongoose.Schema(
     },
     desc: String,
     img: String,
+    option: {
+      type: String,
+      enum: ["all", "achived", "favorite"],
+      default: "all",
+    },
     userId: {
       type: mongoose.Schema.Types.ObjectId,
       required: [true, "userId is required"],
